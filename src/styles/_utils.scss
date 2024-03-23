@@ -1,0 +1,8 @@
+.container {
+  max-width: var(--desktop-width);
+  margin-inline: 0 auto;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
