@@ -1,0 +1,28 @@
+.checkbox {
+  &__input {
+    &:not(:checked)+.checkbox__emulator {
+      background-image: none;
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__emulator {
+    @include flex-center;
+    @include square(24px);
+
+    position: relative;
+    border: 1px solid white;
+    border-radius: 50%;
+    background-image: var(--check-bg-gradient);
+
+    &::after {
+      @include square(60%);
+
+      content: '';
+      transition-duration: var(--transition-duration);
+      background: url('/src/images/icon-check.svg') center / contain no-repeat;
+    }
+  }
+}

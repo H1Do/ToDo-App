@@ -13,19 +13,21 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </header>
       <section class="todo__tasks tasks">
         <div class="tasks__input">
-          <div class="tasks__input-checkbox checkbox">
-            <label for="create-task" class="checkbox__label"></label>
-            <input type="checkbox" class="checkbox__input" id="create-task">
-          </div>
+          <label class="tasks__input-checkbox checkbox">
+            <input type="checkbox" class="checkbox__input visually-hidden">
+            <span class="checkbox__emulator"></span>
+            <span class="checkbox__label visually-hidden">Markup task</span>
+          </label>
           <input type="text" class="tasks__input-field">
         </div>
         <div class="tasks__body">
           <ul class="tasks__list">
-            <!-- <li class="tasks__item task">
-              <div class="task__checkbox checkbox">
-                <label for="create-task" class="checkbox__label"></label>
-                <input type="checkbox" class="checkbox__input" id="create-task">
-              </div>
+            <li class="tasks__item task">
+              <label class="tasks__input-checkbox checkbox">
+                <input type="checkbox" class="checkbox__input visually-hidden">
+                <span class="checkbox__emulator"></span>
+                <span class="checkbox__label visually-hidden">Markup task</span>
+              </label>
               <div class="task__description">
                 asdfasdf
               </div>
@@ -34,7 +36,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
                   <path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/>
                 </svg>
               </button>
-            </li> -->
+            </li>
           </ul>
         </div>
         <div class="tasks__actions">
@@ -49,12 +51,11 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       </section>
       <footer class="todo__footer">
         Drag and drop to reorder list
+        <div class="attribution">
+          Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+          Coded by <a href="#">Your Name Here</a>.
+        </div>
       </footer>
     </div>
-  </div>
-
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
   </div>
 `;
