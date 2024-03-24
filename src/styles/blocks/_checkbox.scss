@@ -13,15 +13,21 @@
     @include square(24px);
 
     position: relative;
-    border: 1px solid white;
+    border: 1px solid var(--border-color);
     border-radius: 50%;
     background-image: var(--check-bg-gradient);
+    transition-duration: var(--transition-duration);
+
+    @include hover {
+      border-color: hsl(258, 87%, 65%)
+    }
 
     &::after {
       @include square(60%);
 
       content: '';
       transition-duration: var(--transition-duration);
+      transition-property: opacity;
       background: url('/src/images/icon-check.svg') center / contain no-repeat;
     }
   }
