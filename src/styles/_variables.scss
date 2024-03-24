@@ -1,9 +1,6 @@
 :root {
-  --mobile-width: 375px;
-  --desktop-width: 1440px;
-
   --bright-blue-color: hsl(220, 98%, 61%);
-  --check-bg-gradient: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+  --check-bg-gradient: linear-gradient(to right bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
   --font-size: 18px;
   --font-family: "Josefin Sans", sans-serif;
@@ -23,4 +20,7 @@
   --dark-grayish-blue: hsl(234, 11%, 52%);
   --very-dark-grayish-blue: hsl(233, 14%, 35%);
   --most-dark-grayish-blue: hsl(237, 14%, 26%);
+
+  --border-radius: 5px;
+  --transition-duration: 0.2s;
 }

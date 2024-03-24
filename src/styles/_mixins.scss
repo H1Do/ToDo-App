@@ -18,6 +18,19 @@
   aspect-ratio: 1;
 }
 
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin abs-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  tranlate: -50% -50%;
+}
+
 @mixin visually-hidden {
   position: absolute !important;
   width: 1px !important;
