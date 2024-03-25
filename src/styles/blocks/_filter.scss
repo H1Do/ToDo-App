@@ -1,0 +1,32 @@
+.filter {
+  display: flex;
+  column-gap: 10px;
+  font-weight: 700;
+
+  @include mobile {
+    justify-content: center;
+    padding-inline: var(--task-padding-x);
+    padding-block: var(--task-padding-y);
+    background-color: var(--todo-background-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 30px 30px var(--box-shadow-color);
+    font-size: 12px;
+  }
+
+  &__button {
+    transition-duration: var(--transition-duration);
+    cursor: pointer;
+
+    @include hover {
+      color: var(--hover-filter-color);
+    }
+
+    &--selected {
+      color: var(--selected-filter-color);
+
+      @include hover {
+        color: var(--selected-filter-color);
+      }
+    }
+  }
+}

@@ -1,7 +1,10 @@
 .checkbox {
+  cursor: pointer;
+
   &__input {
     &:not(:checked)+.checkbox__emulator {
       background-image: none;
+      border: 1px solid var(--border-color);
       &::after {
         opacity: 0;
       }
@@ -13,21 +16,19 @@
     @include square(24px);
 
     position: relative;
-    border: 1px solid var(--border-color);
     border-radius: 50%;
     background-image: var(--check-bg-gradient);
     transition-duration: var(--transition-duration);
 
     @include hover {
-      border-color: hsl(258, 87%, 65%)
+      border-color: hsl(258, 87%, 65%) !important;
     }
 
     &::after {
-      @include square(60%);
+      @include square(50%);
 
       content: '';
       transition-duration: var(--transition-duration);
-      transition-property: opacity;
       background: url('/src/images/icon-check.svg') center / contain no-repeat;
     }
   }

@@ -1,24 +1,27 @@
 :root {
-  --bright-blue-color: hsl(220, 98%, 61%);
-  --check-bg-gradient: linear-gradient(to right bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-
-  --font-size: 18px;
+  --font-size: 18;
+  --font-size-small: 12;
   --font-family: "Josefin Sans", sans-serif;
 
-  /*Light theme*/
-  --very-light-gray: hsl(0, 0%, 98%);
+  --task-padding-x: clamp(15px, (calc(20 / 1440 * 100vw)), 25px);
+  --task-padding-y: clamp(10px, (calc(15 / 1440 * 100vw)), 15px);
+
+  --check-bg-gradient: linear-gradient(to right bottom, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+  --bright-blue-color: hsl(220, 98%, 61%);
+  --light-color: hsl(0, 0%, 98%);
+
   --very-light-grayish-blue: hsl(236, 33%, 92%);
   --light-grayish-blue: hsl(233, 11%, 84%);
   --dark-grayish-blue: hsl(236, 9%, 61%);
   --very-dark-grayish-blue: hsl(235, 19%, 35%);
 
-  /*Dark theme*/
   --very-dark-blue: hsl(235, 21%, 11%);
+  --most-dark-blue: hsl(240, 24%, 8%);
   --very-dark-desaturated-blue: hsl(235, 24%, 19%);
-  --light-grayish-blue: hsl(234, 39%, 85%);
-  --light-grayish-blue-hover: hsl(236, 33%, 92%);
-  --dark-grayish-blue: hsl(234, 11%, 52%);
-  --very-dark-grayish-blue: hsl(233, 14%, 35%);
+  --light-grayish-blue-alt: hsl(234, 39%, 85%);
+  --dark-grayish-blue-alt: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue-alt: hsl(233, 14%, 35%);
   --most-dark-grayish-blue: hsl(237, 14%, 26%);
 
   --border-radius: 5px;

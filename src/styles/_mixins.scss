@@ -7,6 +7,10 @@
   }
 }
 
+@mixin fluid-text($max: 48, $min: 16) {
+  font-size: clamp(#{$min}px, #{calc($max / 1440) * 100}vw, #{$max}px);
+}
+
 @mixin reset-button {
   padding: 0;
   background-color: transparent;

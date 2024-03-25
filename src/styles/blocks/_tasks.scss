@@ -1,0 +1,94 @@
+.tasks {
+  display: flex;
+
+  &__input,
+  &__body {
+    background-color: var(--todo-background-color);
+    border-radius: var(--border-radius);
+  }
+
+  &__input {
+    display: flex;
+    align-items: center;
+    column-gap: calc(var(--task-padding-x) - 5px);
+    padding-inline: var(--task-padding-x);
+    padding-block: var(--task-padding-y);
+    caret-color: var(--caret-color);
+
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+
+    &-field {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      color: var(--main-font-color);
+      padding-top: 3px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: var(--placeholder-font-color);
+      }
+    }
+  }
+
+  &__body {
+    box-shadow: 0 40px 30px var(--box-shadow-color);
+
+    @include mobile {
+      display: contents;
+    }
+  }
+
+  &__list {
+    @include mobile {
+      background-color: var(--todo-background-color);
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+    }
+  }
+
+  &__actions {
+    font-size: 14px;
+    color: var(--filter-font-color);
+    display: flex;
+    justify-content: space-between;
+    padding-inline: var(--task-padding-x);
+    padding-block: calc(var(--task-padding-y) + 3px) var(--task-padding-y);
+
+    @include mobile {
+      display: contents;
+    }
+
+    &-cleanup {
+      order: 1;
+      transition-duration: var(--transition-duration);
+      cursor: pointer;
+
+      @include hover {
+        color: var(--hover-filter-color);
+      }
+    }
+
+    &-mobile {
+      display: flex;
+      font-size: 11px;
+      color: var(--filter-font-color);
+      display: flex;
+      justify-content: space-between;
+      padding-inline: var(--task-padding-x);
+      padding-block: calc(var(--task-padding-y) + 3px) var(--task-padding-y);
+      background-color: var(--todo-background-color);
+      border-radius: 0 0 var(--border-radius) var(--border-radius);
+      margin-bottom: 20px;
+      box-shadow: 0 40px 30px var(--box-shadow-color);
+
+      @include mobile-above {
+        display: contents;
+      }
+    }
+  }
+}

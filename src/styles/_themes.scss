@@ -1,0 +1,45 @@
+.todo {
+  &--light-theme {
+    --main-background-color: var(--very-light-grayish-blue);
+    --todo-background-color: var(--light-color);
+    --border-color: var(--very-light-grayish-blue);
+    --main-font-color: var(--very-dark-grayish-blue);
+    --box-shadow-color: var(--light-grayish-blue);
+    --placeholder-font-color: var(--dark-grayish-blue);
+    --caret-color: var(--bright-blue-color);
+    --cross-svg-color: var(--very-dark-grayish-blue);
+    --completed-task-font-color: var(--light-grayish-blue);
+    --filter-font-color: var(--dark-grayish-blue);
+    --selected-filter-color: var(--bright-blue-color);
+    --hover-filter-color: var(--very-dark-grayish-blue);
+    --footer-font-color: var(--dark-grayish-blue);
+
+    background: url('/src/images/bg-desktop-light.jpg') top center no-repeat var(--main-background-color);
+
+    .sun-svg {
+      display: none;
+    }
+  }
+
+  &--dark-theme {
+    --main-background-color: var(--very-dark-blue);
+    --todo-background-color: var(--very-dark-desaturated-blue);
+    --border-color: var(--most-dark-grayish-blue);
+    --main-font-color: var(--light-grayish-blue-alt);
+    --box-shadow-color: var(--most-dark-blue);
+    --placeholder-font-color: var(--dark-grayish-blue-alt);
+    --caret-color: var(--bright-blue-color);
+    --cross-svg-color: var(--most-dark-grayish-blue);
+    --completed-task-font-color: var(--very-dark-grayish-blue-alt);
+    --filter-font-color: var(--very-dark-grayish-blue-alt);
+    --selected-filter-color: var(--bright-blue-color);
+    --hover-filter-color: var(--light-grayish-blue-alt);
+    --footer-font-color: var(--very-dark-grayish-blue-alt);
+
+    background: url('/src/images/bg-desktop-dark.jpg') top center no-repeat var(--main-background-color);
+
+    .moon-svg {
+      display: none;
+    }
+  }
+}

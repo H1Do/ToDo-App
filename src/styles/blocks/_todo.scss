@@ -1,0 +1,35 @@
+.todo {
+  display: flex;
+  justify-content: center;
+  padding: 80px 30px 60px;
+  min-height: 100svh;
+
+  @include mobile {
+    padding-top: 40px;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+
+    width: 540px;
+    row-gap: 30px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+  }
+
+  &__tasks {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__footer {
+    color: var(--footer-font-color);
+    font-size: 12px;
+    text-align: center;
+  }
+}

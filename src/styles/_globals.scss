@@ -1,9 +1,16 @@
 html {
+  @include fluid-text(16, 12);
+
   font-family: var(--font-family);
-  font-size: var(--font-size);
-  color: #fff;
+  color: var(--main-font-color);
 }
 
 button {
   @include reset-button;
+  color: inherit;
+}
+
+svg {
+  display: block;
+  color: var(--light-color);
 }

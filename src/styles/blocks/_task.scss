@@ -1,0 +1,45 @@
+.task {
+  --fontColor: var(--main-font-color);
+  --textDecoration: normal;
+
+  display: flex;
+  padding-inline: var(--task-padding-x);
+  padding-block: var(--task-padding-y);
+  align-items: center;
+  column-gap: calc(var(--task-padding-x) - 5px);
+  border-bottom: 1px solid var(--border-color);
+
+  @include hover {
+    .task__delete-button {
+      opacity: 1;
+    }
+  }
+
+  &__description {
+    width: 100%;
+    color: var(--fontColor);
+    text-decoration: var(--textDecoration);
+    padding-top: 3px;
+    cursor: pointer;
+  }
+
+  &__delete-button {
+    cursor: pointer;
+    opacity: 0;
+    transition-duration: var(--transition-duration);
+
+    @include mobile {
+      opacity: 1;
+      scale: 0.7;
+    }
+
+    svg {
+      color: var(--cross-svg-color);
+    }
+  }
+
+  &--completed {
+    --fontColor: var(--completed-task-font-color);
+    --textDecoration: line-through;
+  }
+}
