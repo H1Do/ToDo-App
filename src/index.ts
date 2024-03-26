@@ -1,7 +1,8 @@
 import './styles/styles.scss';
+import { ThemeManager } from './modules/theme';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div class="container todo todo--dark-theme">
+  <div class="container todo">
     <div class="todo__inner">
       <header class="todo__header header">
         <h1 class="header__title">TODO</h1>
@@ -74,9 +75,15 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         Drag and drop to reorder list
         <div class="attribution">
           Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-          Coded by <a href="#">Your Name Here</a>.
+          Coded by <a href="https://github.com/H1Do">Hido</a>.
         </div>
       </footer>
     </div>
   </div>
 `;
+
+ThemeManager.initTheme(
+  window?.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+  document.querySelector('.todo') as HTMLDivElement,
+  document.querySelector('.header__button') as HTMLButtonElement,
+);
