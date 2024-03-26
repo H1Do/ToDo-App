@@ -1,5 +1,7 @@
 import './styles/styles.scss';
-import { ThemeManager } from './modules/theme';
+import { ThemeManager } from './modules/themeManager.ts';
+import { TaskManager } from './modules/taskManager.ts';
+import { FilterManager } from './modules/filterManager.ts';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="container todo">
@@ -27,36 +29,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </div>
         <div class="tasks__body">
           <ul class="tasks__list">
-            <li class="tasks__item task">
-              <label class="tasks__input-checkbox checkbox">
-                <input type="checkbox" class="checkbox__input visually-hidden">
-                <span class="checkbox__emulator"></span>
-                <span class="checkbox__label visually-hidden">Markup task</span>
-              </label>
-              <div class="task__description">
-                Complete online JavaScript course
-              </div>
-              <button class="task__delete-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
-                  <path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/>
-                </svg>
-              </button>
-            </li>
-            <li class="tasks__item task task--completed">
-              <label class="tasks__input-checkbox checkbox">
-                <input type="checkbox" class="checkbox__input visually-hidden">
-                <span class="checkbox__emulator"></span>
-                <span class="checkbox__label visually-hidden">Markup task</span>
-              </label>
-              <div class="task__description">
-                Complete online JavaScript course
-              </div>
-              <button class="task__delete-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18">
-                  <path fill="#494C6B" fill-rule="evenodd" d="M16.97 0l.708.707L9.546 8.84l8.132 8.132-.707.707-8.132-8.132-8.132 8.132L0 16.97l8.132-8.132L0 .707.707 0 8.84 8.132 16.971 0z"/>
-                </svg>
-              </button>
-            </li>
+            
           </ul>
           <div class="tasks__actions">
             <div class="tasks__actions-mobile">
@@ -64,9 +37,9 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
               <button type="button" class="tasks__actions-cleanup button">Clear Completed</button>
             </div>
             <div class="tasks__actions-filter filter">
-              <button type="button" class="filter__button button filter__button--selected">All</button>
-              <button type="button" class="filter__button button">Active</button>
-              <button type="button" class="filter__button button">Completed</button>
+              <button type="button" value="all" class="filter__button button filter__button--selected">All</button>
+              <button type="button" value="active" class="filter__button button">Active</button>
+              <button type="button" value="completed" class="filter__button button">Completed</button>
             </div>
           </div>
         </div>
@@ -87,3 +60,19 @@ ThemeManager.initTheme(
   document.querySelector('.todo') as HTMLDivElement,
   document.querySelector('.header__button') as HTMLButtonElement,
 );
+
+const taskManager = new TaskManager();
+const filterManager = new FilterManager(
+  document.querySelector('.filter') as HTMLDivElement,
+  taskManager.setFilter,
+);
+
+filterManager.initFilterSwitching();
+
+taskManager.addTask('1', false);
+taskManager.addTask('2', false);
+taskManager.addTask('3', false);
+taskManager.addTask('4', false);
+taskManager.addTask('5', false);
+
+document.querySelector('.tasks__list')?.append(taskManager.getHTML());
