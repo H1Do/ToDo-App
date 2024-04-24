@@ -1,11 +1,13 @@
 export class FilterManager {
   private filterElement: HTMLDivElement;
-  private switchCallback: (arg: string) => void;
+  // eslint-disable-next-line
+  private switchCallback: (_: string) => void;
   private filterButtons: NodeListOf<HTMLButtonElement>;
 
   constructor(
     filterElement: HTMLDivElement,
-    switchCallback: (arg: string) => void,
+    // eslint-disable-next-line
+    switchCallback: (_: string) => void,
   ) {
     this.filterElement = filterElement;
     this.switchCallback = switchCallback;
@@ -14,7 +16,11 @@ export class FilterManager {
 
   public initFilterSwitching() {
     this.filterElement.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLButtonElement)) {
+        return;
+      }
       const target = event.target as HTMLButtonElement;
+
       this.filterButtons.forEach((currentElement) => {
         currentElement.classList.remove('filter__button--selected');
       });

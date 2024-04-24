@@ -12,6 +12,7 @@
   &__inner {
     display: flex;
     flex-direction: column;
+    z-index: 1;
 
     width: 540px;
     row-gap: 30px;

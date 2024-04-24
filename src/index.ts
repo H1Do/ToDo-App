@@ -55,24 +55,41 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `;
 
+const TodoElement = document.querySelector('.todo') as HTMLDivElement;
+const ThemeButtonElement = document.querySelector(
+  '.header__button',
+) as HTMLButtonElement;
+const FilterElement = document.querySelector('.filter') as HTMLDivElement;
+const TaskListElement = document.querySelector(
+  '.tasks__list',
+) as HTMLUListElement;
+
 ThemeManager.initTheme(
   window?.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-  document.querySelector('.todo') as HTMLDivElement,
-  document.querySelector('.header__button') as HTMLButtonElement,
+  TodoElement,
+  ThemeButtonElement,
 );
 
 const taskManager = new TaskManager();
-const filterManager = new FilterManager(
-  document.querySelector('.filter') as HTMLDivElement,
-  taskManager.setFilter,
-);
-
-filterManager.initFilterSwitching();
 
 taskManager.addTask('1', false);
-taskManager.addTask('2', false);
-taskManager.addTask('3', false);
+taskManager.addTask('2', true);
+taskManager.addTask('3', true);
 taskManager.addTask('4', false);
 taskManager.addTask('5', false);
 
-document.querySelector('.tasks__list')?.append(taskManager.getHTML());
+const renderList = () => {
+  TaskListElement.innerHTML = '';
+  TaskListElement.append(taskManager.getHTML());
+};
+
+const switchTheme = (filterValue: string) => {
+  taskManager.setFilter(filterValue);
+  console.log(filterValue);
+  renderList();
+};
+
+const filterManager = new FilterManager(FilterElement, switchTheme);
+filterManager.initFilterSwitching();
+
+renderList();

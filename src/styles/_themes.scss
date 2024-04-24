@@ -1,4 +1,15 @@
 .todo {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    height: var(--bg-height);
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+
   &--light-theme {
     --main-background-color: var(--very-light-grayish-blue);
     --todo-background-color: var(--light-color);
@@ -14,7 +25,11 @@
     --hover-filter-color: var(--very-dark-grayish-blue);
     --footer-font-color: var(--dark-grayish-blue);
 
-    background: url('/src/images/bg-desktop-light.jpg') top center no-repeat var(--main-background-color);
+    background-color: var(--main-background-color);
+
+    &::before {
+      background: url('/src/images/bg-desktop-light.jpg') center / cover no-repeat;
+    }
 
     .sun-svg {
       display: none;
@@ -36,7 +51,11 @@
     --hover-filter-color: var(--light-grayish-blue-alt);
     --footer-font-color: var(--very-dark-grayish-blue-alt);
 
-    background: url('/src/images/bg-desktop-dark.jpg') top center no-repeat var(--main-background-color);
+    background-color: var(--main-background-color);
+
+    &::before {
+      background: url('/src/images/bg-desktop-dark.jpg') center / cover no-repeat;
+    }
 
     .moon-svg {
       display: none;

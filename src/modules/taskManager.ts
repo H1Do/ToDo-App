@@ -2,7 +2,7 @@ import { Task } from './task';
 
 export class TaskManager {
   private taskList: Task[];
-  private filterValue: string = 'All';
+  private filterValue: string = 'all';
 
   constructor(taskList: Task[] = []) {
     this.taskList = taskList;
@@ -27,9 +27,9 @@ export class TaskManager {
 
     this.taskList.forEach((currentValue, _, thisArray) => {
       if (
-        this.filterValue === 'All' ||
-        (this.filterValue === 'Completed' && currentValue.getStatus()) ||
-        (this.filterValue === 'Active' && currentValue.getStatus())
+        this.filterValue === 'all' ||
+        (this.filterValue === 'completed' && currentValue.getStatus()) ||
+        (this.filterValue === 'active' && !currentValue.getStatus())
       ) {
         const liElement = document.createElement('li');
         liElement.innerHTML = `
