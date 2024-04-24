@@ -3,6 +3,7 @@ import { Task } from './task';
 export class TaskManager {
   private taskList: Task[];
   private filterValue: string = 'all';
+  private renderCallback: () => void = () => {};
 
   constructor(taskList: Task[] = []) {
     this.taskList = taskList;
@@ -10,22 +11,31 @@ export class TaskManager {
 
   public addTask(taskDescription: string, isCompleted: boolean) {
     this.taskList.unshift(new Task(taskDescription, isCompleted));
+    this.renderCallback();
   }
 
-  public removeTask(index: number) {
-    this.taskList = this.taskList.filter(
-      (_, currentIndex) => index !== currentIndex,
-    );
+  public removeTask(task: Task) {
+    this.taskList = this.taskList.filter((currentTask) => task !== currentTask);
+    this.renderCallback();
   }
 
   public setFilter(filterValue: string) {
     this.filterValue = filterValue;
+    this.renderCallback();
+  }
+
+  public getCount() {
+    return this.taskList.length;
+  }
+
+  public setRenderCallback(callback: () => void) {
+    this.renderCallback = callback;
   }
 
   public getHTML(): DocumentFragment {
     const resultHTML = new DocumentFragment();
 
-    this.taskList.forEach((currentValue, _, thisArray) => {
+    this.taskList.forEach((currentValue) => {
       if (
         this.filterValue === 'all' ||
         (this.filterValue === 'completed' && currentValue.getStatus()) ||
@@ -62,8 +72,7 @@ export class TaskManager {
         liElement
           .querySelector('.task__delete-button')
           ?.addEventListener('click', () => {
-            liElement.remove();
-            thisArray = thisArray.filter((value) => currentValue !== value);
+            this.removeTask(currentValue);
           });
         resultHTML.append(liElement);
       }

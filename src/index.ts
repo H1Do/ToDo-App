@@ -19,21 +19,21 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </button>
       </header>
       <section class="todo__tasks tasks">
-        <div class="tasks__input">
+        <form class="tasks__input">
           <label class="tasks__input-checkbox checkbox">
             <input type="checkbox" class="checkbox__input visually-hidden">
             <span class="checkbox__emulator"></span>
             <span class="checkbox__label visually-hidden">Markup task</span>
           </label>
           <input type="text" class="tasks__input-field" placeholder="Create a new todo...">
-        </div>
+        </form>
         <div class="tasks__body">
           <ul class="tasks__list">
             
           </ul>
           <div class="tasks__actions">
             <div class="tasks__actions-mobile">
-              <div class="tasks__actions-count">5 items left</div>
+              <div class="tasks__actions-count"></div>
               <button type="button" class="tasks__actions-cleanup button">Clear Completed</button>
             </div>
             <div class="tasks__actions-filter filter">
@@ -63,6 +63,18 @@ const FilterElement = document.querySelector('.filter') as HTMLDivElement;
 const TaskListElement = document.querySelector(
   '.tasks__list',
 ) as HTMLUListElement;
+const TaskInputForm = document.querySelector(
+  '.tasks__input',
+) as HTMLFormElement;
+const TaskInputElement = document.querySelector(
+  '.tasks__input-field',
+) as HTMLInputElement;
+const TaskInputCheckboxElement = document.querySelector(
+  '.checkbox__input',
+) as HTMLInputElement;
+const TaskCounterElement = document.querySelector(
+  '.tasks__actions-count',
+) as HTMLDivElement;
 
 ThemeManager.initTheme(
   window?.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
@@ -81,15 +93,21 @@ taskManager.addTask('5', false);
 const renderList = () => {
   TaskListElement.innerHTML = '';
   TaskListElement.append(taskManager.getHTML());
+  TaskCounterElement.textContent = `${taskManager.getCount()} items left`;
 };
 
 const switchTheme = (filterValue: string) => {
   taskManager.setFilter(filterValue);
-  console.log(filterValue);
-  renderList();
 };
 
 const filterManager = new FilterManager(FilterElement, switchTheme);
 filterManager.initFilterSwitching();
+
+TaskInputForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  taskManager.addTask(TaskInputElement.value, TaskInputCheckboxElement.checked);
+});
+
+taskManager.setRenderCallback(renderList);
 
 renderList();
