@@ -22,6 +22,7 @@
     text-decoration: var(--textDecoration);
     padding-top: 3px;
     cursor: pointer;
+    word-break: break-all;
   }
 
   &__delete-button {

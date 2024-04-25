@@ -31,6 +31,14 @@ export class TaskManager {
     this.renderCallback();
   }
 
+  public getTaskList() {
+    return this.taskList;
+  }
+
+  public setTaskList(taskList: Array<Task>) {
+    this.taskList = taskList;
+  }
+
   public getCount() {
     if (this.filterValue === 'all') {
       return this.taskList.length;

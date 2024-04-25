@@ -1,7 +1,5 @@
 import './styles/styles.scss';
-import { ThemeManager } from './modules/themeManager.ts';
-import { TaskManager } from './modules/taskManager.ts';
-import { FilterManager } from './modules/filterManager.ts';
+import App from './modules/app';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="container todo">
@@ -55,64 +53,5 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `;
 
-const TodoElement = document.querySelector('.todo') as HTMLDivElement;
-const ThemeButtonElement = document.querySelector(
-  '.header__button',
-) as HTMLButtonElement;
-const FilterElement = document.querySelector('.filter') as HTMLDivElement;
-const TaskListElement = document.querySelector(
-  '.tasks__list',
-) as HTMLUListElement;
-const TaskInputForm = document.querySelector(
-  '.tasks__input',
-) as HTMLFormElement;
-const TaskInputElement = document.querySelector(
-  '.tasks__input-field',
-) as HTMLInputElement;
-const TaskInputCheckboxElement = document.querySelector(
-  '.checkbox__input',
-) as HTMLInputElement;
-const TaskCounterElement = document.querySelector(
-  '.tasks__actions-count',
-) as HTMLDivElement;
-const TaskClearButtonElement = document.querySelector(
-  '.tasks__actions-cleanup',
-) as HTMLButtonElement;
-
-ThemeManager.initTheme(
-  window?.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
-  TodoElement,
-  ThemeButtonElement,
-);
-
-const taskManager = new TaskManager();
-
-taskManager.addTask('1', false);
-taskManager.addTask('2', true);
-
-const renderList = () => {
-  TaskListElement.innerHTML = '';
-  TaskListElement.append(taskManager.getHTML());
-  TaskCounterElement.textContent = `${taskManager.getCount()} items left`;
-};
-
-const switchTheme = (filterValue: string) => {
-  taskManager.setFilter(filterValue);
-};
-
-const filterManager = new FilterManager(FilterElement, switchTheme);
-filterManager.initFilterSwitching();
-
-TaskInputForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  taskManager.addTask(TaskInputElement.value, TaskInputCheckboxElement.checked);
-  TaskInputElement.value = '';
-});
-
-TaskClearButtonElement.addEventListener('click', () => {
-  taskManager.clearComleted();
-});
-
-taskManager.setRenderCallback(renderList);
-
-renderList();
+const app = new App(document.querySelector('#app')!);
+app.initApp();
