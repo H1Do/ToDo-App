@@ -75,6 +75,9 @@ const TaskInputCheckboxElement = document.querySelector(
 const TaskCounterElement = document.querySelector(
   '.tasks__actions-count',
 ) as HTMLDivElement;
+const TaskClearButtonElement = document.querySelector(
+  '.tasks__actions-cleanup',
+) as HTMLButtonElement;
 
 ThemeManager.initTheme(
   window?.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
@@ -86,9 +89,6 @@ const taskManager = new TaskManager();
 
 taskManager.addTask('1', false);
 taskManager.addTask('2', true);
-taskManager.addTask('3', true);
-taskManager.addTask('4', false);
-taskManager.addTask('5', false);
 
 const renderList = () => {
   TaskListElement.innerHTML = '';
@@ -106,6 +106,11 @@ filterManager.initFilterSwitching();
 TaskInputForm.addEventListener('submit', (event) => {
   event.preventDefault();
   taskManager.addTask(TaskInputElement.value, TaskInputCheckboxElement.checked);
+  TaskInputElement.value = '';
+});
+
+TaskClearButtonElement.addEventListener('click', () => {
+  taskManager.clearComleted();
 });
 
 taskManager.setRenderCallback(renderList);

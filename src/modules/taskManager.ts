@@ -24,8 +24,24 @@ export class TaskManager {
     this.renderCallback();
   }
 
+  public clearComleted() {
+    this.taskList = this.taskList.filter(
+      (currentTask) => !currentTask.getStatus(),
+    );
+    this.renderCallback();
+  }
+
   public getCount() {
-    return this.taskList.length;
+    if (this.filterValue === 'all') {
+      return this.taskList.length;
+    } else {
+      const completedCount = this.taskList.reduce((count, task) => {
+        return count + Number(task.getStatus());
+      }, 0);
+      return this.filterValue === 'completed'
+        ? completedCount
+        : this.taskList.length - completedCount;
+    }
   }
 
   public setRenderCallback(callback: () => void) {
