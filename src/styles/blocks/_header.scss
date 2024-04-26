@@ -5,7 +5,8 @@
   }
 
   &__button {
-    transition-duration: var(--transition-duration);
+    transition-property: opacity;
+
     @include hover {
       opacity: 0.7;
     }

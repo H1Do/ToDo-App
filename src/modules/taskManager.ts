@@ -59,6 +59,20 @@ export class TaskManager {
   public getHTML(): DocumentFragment {
     const resultHTML = new DocumentFragment();
 
+    if (!this.taskList.length) {
+      const liElement = document.createElement('li');
+      liElement.innerHTML = `
+        <div class="task__description">
+          No one task
+        </div>
+      `;
+      liElement.className = 'tasks__item task';
+      liElement.style.textAlign = 'center';
+      liElement.style.fontSize = '16px';
+      resultHTML.append(liElement);
+      return resultHTML;
+    }
+
     this.taskList.forEach((currentValue) => {
       if (
         this.filterValue === 'all' ||

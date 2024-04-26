@@ -5,6 +5,11 @@ html {
   color: var(--main-font-color);
 }
 
+* {
+  transition-property: var(--transition-property);
+  transition-duration: var(--transition-duration);
+}
+
 button {
   @include reset-button;
   color: inherit;

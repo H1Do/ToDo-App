@@ -31,6 +31,12 @@
       background: url('/src/images/bg-desktop-light.jpg') center / cover no-repeat;
     }
 
+    @include mobile {
+      &::before {
+        background: url('/src/images/bg-mobile-light.jpg') top center / cover no-repeat;
+      }
+    }
+
     .sun-svg {
       display: none;
     }
@@ -55,6 +61,12 @@
 
     &::before {
       background: url('/src/images/bg-desktop-dark.jpg') center / cover no-repeat;
+    }
+
+    @include mobile {
+      &::before {
+        background: url('/src/images/bg-mobile-dark.jpg') top center / cover no-repeat;
+      }
     }
 
     .moon-svg {

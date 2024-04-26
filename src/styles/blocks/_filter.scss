@@ -10,13 +10,12 @@
     background-color: var(--todo-background-color);
     border-radius: var(--border-radius);
     box-shadow: 0 30px 30px var(--box-shadow-color);
-    transition-duration: var(--transition-duration);
     font-size: 12px;
   }
 
   &__button {
-    transition-duration: var(--transition-duration);
     cursor: pointer;
+    color: var(--footer-font-color);
 
     @include hover {
       color: var(--hover-filter-color);

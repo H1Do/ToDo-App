@@ -26,6 +26,11 @@
 
   --border-radius: 5px;
   --transition-duration: 0.2s;
+  --transition-property: background-color, border-color, box-shadow, color;
 
-  --bg-height: 20%;
+  --bg-height: 250px;
+
+  @include mobile {
+    --bg-height: 200px;
+  }
 }

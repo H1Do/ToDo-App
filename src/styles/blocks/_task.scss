@@ -8,7 +8,6 @@
   align-items: center;
   column-gap: calc(var(--task-padding-x) - 5px);
   border-bottom: 1px solid var(--border-color);
-  transition-duration: var(--transition-duration);
 
   @include hover {
     .task__delete-button {
@@ -28,7 +27,6 @@
   &__delete-button {
     cursor: pointer;
     opacity: 0;
-    transition-duration: var(--transition-duration);
 
     @include mobile {
       opacity: 1;
