@@ -2,6 +2,7 @@ import { FilterManager } from './filterManager';
 import { TaskManager } from './taskManager';
 import { ThemeManager } from './themeManager';
 import StorageManager from './storageManager';
+import DragNDropManager from './dragNDropManager';
 import { Task } from './task';
 
 type TaskMinimized = {
@@ -23,6 +24,7 @@ class App {
   private storageManager: StorageManager<Array<TaskMinimized>>;
   private taskManager: TaskManager;
   private filterManager: FilterManager;
+  private dragNDropManager: DragNDropManager;
 
   constructor(appElement: HTMLDivElement) {
     this.todoElement = appElement.querySelector('.todo')!;
@@ -47,6 +49,11 @@ class App {
       this.taskManager.setFilter.bind(this.taskManager),
     );
     this.filterManager.initFilterSwitching();
+    this.dragNDropManager = new DragNDropManager(
+      this.taskManager,
+      this.taskListElement,
+    );
+    this.dragNDropManager.initDrag();
   }
 
   public initApp() {

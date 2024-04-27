@@ -39,6 +39,16 @@ export class TaskManager {
     this.taskList = taskList;
   }
 
+  public switchPlaces(firstIndex: number, secondIndex: number) {
+    if (firstIndex === secondIndex) {
+      return;
+    }
+    const temp = this.taskList[firstIndex];
+    this.taskList[firstIndex] = this.taskList[secondIndex];
+    this.taskList[secondIndex] = temp;
+    this.renderCallback();
+  }
+
   public getCount() {
     if (this.filterValue === 'all') {
       return this.taskList.length;
@@ -98,6 +108,7 @@ export class TaskManager {
         </button>
       `;
         liElement.className = 'tasks__item task';
+        liElement.setAttribute('draggable', 'true');
         if (currentValue.getStatus()) {
           liElement.classList.add('task--completed');
         }
