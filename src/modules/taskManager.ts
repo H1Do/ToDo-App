@@ -39,10 +39,17 @@ export class TaskManager {
     this.taskList = taskList;
   }
 
-  public switchPlaces(firstIndex: number, secondIndex: number) {
-    if (firstIndex === secondIndex) {
+  public switchPlaces(firstId: number, secondId: number) {
+    if (firstId === secondId) {
       return;
     }
+    const firstIndex = this.taskList.findIndex(
+      (task) => task.getId() === firstId,
+    );
+    const secondIndex = this.taskList.findIndex(
+      (task) => task.getId() === secondId,
+    );
+
     const temp = this.taskList[firstIndex];
     this.taskList[firstIndex] = this.taskList[secondIndex];
     this.taskList[secondIndex] = temp;
@@ -69,19 +76,7 @@ export class TaskManager {
   public getHTML(): DocumentFragment {
     const resultHTML = new DocumentFragment();
 
-    if (!this.taskList.length) {
-      const liElement = document.createElement('li');
-      liElement.innerHTML = `
-        <div class="task__description">
-          No one task
-        </div>
-      `;
-      liElement.className = 'tasks__item task';
-      liElement.style.textAlign = 'center';
-      liElement.style.fontSize = '16px';
-      resultHTML.append(liElement);
-      return resultHTML;
-    }
+    let taskCount = 0;
 
     this.taskList.forEach((currentValue) => {
       if (
@@ -89,6 +84,7 @@ export class TaskManager {
         (this.filterValue === 'completed' && currentValue.getStatus()) ||
         (this.filterValue === 'active' && !currentValue.getStatus())
       ) {
+        taskCount++;
         const liElement = document.createElement('li');
         liElement.innerHTML = `
         <label class="tasks__input-checkbox checkbox">
@@ -108,6 +104,7 @@ export class TaskManager {
         </button>
       `;
         liElement.className = 'tasks__item task';
+        liElement.dataset.id = String(currentValue.getId());
         liElement.setAttribute('draggable', 'true');
         if (currentValue.getStatus()) {
           liElement.classList.add('task--completed');
@@ -116,7 +113,7 @@ export class TaskManager {
           .querySelector('.checkbox__input')
           ?.addEventListener('change', () => {
             currentValue.changeStatus();
-            liElement.classList.toggle('task--completed');
+            this.renderCallback();
           });
         liElement
           .querySelector('.task__delete-button')
@@ -126,6 +123,20 @@ export class TaskManager {
         resultHTML.append(liElement);
       }
     });
+
+    if (!taskCount) {
+      const liElement = document.createElement('li');
+      liElement.innerHTML = `
+        <div class="task__description">
+          No one task
+        </div>
+      `;
+      liElement.className = 'tasks__item task';
+      liElement.style.textAlign = 'center';
+      liElement.style.fontSize = '16px';
+      resultHTML.append(liElement);
+      return resultHTML;
+    }
 
     return resultHTML;
   }

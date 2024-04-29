@@ -3,7 +3,7 @@ import { TaskManager } from './taskManager';
 class DragNDropManager {
   private taskManager: TaskManager;
   private taskListElement: HTMLUListElement;
-  private dragStartIndex: number = -1;
+  private dragStartId: number = -1;
 
   constructor(taskManager: TaskManager, taskListElement: HTMLUListElement) {
     this.taskManager = taskManager;
@@ -15,9 +15,7 @@ class DragNDropManager {
       if (!event.target) {
         return;
       }
-      this.dragStartIndex = Array.from(this.taskListElement.children).indexOf(
-        event.target as HTMLElement,
-      );
+      this.dragStartId = Number((event.target as HTMLElement).dataset.id);
 
       event.dataTransfer!.effectAllowed = 'move';
       event.dataTransfer!.setData('text/html', this.taskListElement.innerHTML);
@@ -31,16 +29,16 @@ class DragNDropManager {
     const handleDrop = (event: DragEvent) => {
       event.preventDefault();
 
-      const dragEndElement = (event.target as HTMLElement).closest('.task');
+      const dragEndElement = (event.target as HTMLElement).closest(
+        '.task',
+      ) as HTMLElement;
       if (!dragEndElement) {
         return;
       }
 
-      const dragEndIndex = Array.from(this.taskListElement.children).indexOf(
-        dragEndElement,
-      );
+      const dragEndId = Number(dragEndElement.dataset.id);
 
-      this.taskManager.switchPlaces(dragEndIndex, this.dragStartIndex);
+      this.taskManager.switchPlaces(dragEndId, this.dragStartId);
     };
 
     this.taskListElement.addEventListener('dragstart', handleDragStart);

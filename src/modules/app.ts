@@ -6,6 +6,7 @@ import DragNDropManager from './dragNDropManager';
 import { Task } from './task';
 
 type TaskMinimized = {
+  id: number;
   description: string;
   isCompleted: boolean;
 };
@@ -79,7 +80,7 @@ class App {
         const taskList: Array<Task> = [];
 
         data?.forEach((task) => {
-          taskList.push(new Task(task.description, task.isCompleted));
+          taskList.push(new Task(task.description, task.isCompleted, task.id));
         });
 
         this.taskManager.setTaskList(taskList);
@@ -92,6 +93,7 @@ class App {
       const data = this.taskManager.getTaskList();
       this.storageManager.setData(
         data.map((task) => ({
+          id: task.getId(),
           description: task.getDescription(),
           isCompleted: task.getStatus(),
         })),
@@ -100,6 +102,9 @@ class App {
 
     this.taskInputForm.addEventListener('submit', (event) => {
       event.preventDefault();
+      if (!this.taskInputElement.value) {
+        return;
+      }
       this.taskManager.addTask(
         this.taskInputElement.value,
         this.taskInputCheckboxElement.checked,
