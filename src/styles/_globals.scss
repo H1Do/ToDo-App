@@ -19,3 +19,13 @@ svg {
   display: block;
   color: var(--light-color);
 }
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+  color: var(--footer-font-color);
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}

@@ -1,5 +1,5 @@
 import './styles/styles.scss';
-import App from './modules/app';
+import { TodoView } from './modules/todo/TodoView';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="container todo">
@@ -53,5 +53,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   </div>
 `;
 
-const app = new App(document.querySelector('#app')!);
-app.initApp();
+const todoElement = document.querySelector<HTMLDivElement>('.todo')!;
+
+const todoView = new TodoView(todoElement);
+
+todoView.render();

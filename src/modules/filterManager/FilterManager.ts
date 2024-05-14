@@ -1,4 +1,4 @@
-export class FilterManager {
+class FilterManager {
   private filterElement: HTMLDivElement;
   // eslint-disable-next-line
   private switchCallback: (_: string) => void;
@@ -29,3 +29,5 @@ export class FilterManager {
     });
   }
 }
+
+export default FilterManager;

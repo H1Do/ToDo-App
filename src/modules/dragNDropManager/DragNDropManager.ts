@@ -1,12 +1,15 @@
-import { TaskManager } from './taskManager';
-
 class DragNDropManager {
-  private taskManager: TaskManager;
+  // eslint-disable-next-line
+  private switchPlaces: (arg1: number, arg2: number) => void;
   private taskListElement: HTMLUListElement;
   private dragStartId: number = -1;
 
-  constructor(taskManager: TaskManager, taskListElement: HTMLUListElement) {
-    this.taskManager = taskManager;
+  constructor(
+    // eslint-disable-next-line
+    switchPlaces: (arg1: number, arg2: number) => void,
+    taskListElement: HTMLUListElement,
+  ) {
+    this.switchPlaces = switchPlaces;
     this.taskListElement = taskListElement;
   }
 
@@ -38,7 +41,7 @@ class DragNDropManager {
 
       const dragEndId = Number(dragEndElement.dataset.id);
 
-      this.taskManager.switchPlaces(dragEndId, this.dragStartId);
+      this.switchPlaces(dragEndId, this.dragStartId);
     };
 
     this.taskListElement.addEventListener('dragstart', handleDragStart);

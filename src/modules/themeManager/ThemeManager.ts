@@ -1,43 +1,27 @@
 export class ThemeManager {
-  private static instance: ThemeManager;
   private currentTheme: string = 'dark';
   private containerElement: HTMLDivElement;
   private switchThemeButton: HTMLButtonElement;
 
-  private constructor(
+  constructor(
     currentTheme: string,
-    htmlElement: HTMLDivElement,
+    containerElement: HTMLDivElement,
     buttonElement: HTMLButtonElement,
   ) {
     this.currentTheme = currentTheme;
-    this.containerElement = htmlElement;
+    this.containerElement = containerElement;
     this.switchThemeButton = buttonElement;
+  }
+
+  public init() {
     this.switchThemeButton.addEventListener(
       'click',
       this.switchTheme.bind(this),
     );
     this.containerElement.classList.add(`todo--${this.currentTheme}-theme`);
-    ThemeManager.instance = this;
   }
 
-  public static initTheme(
-    currentTheme: string,
-    htmlElement: HTMLDivElement,
-    buttonElement: HTMLButtonElement,
-  ): ThemeManager {
-    if (this.instance) {
-      return this.instance;
-    } else {
-      this.instance = new ThemeManager(
-        currentTheme,
-        htmlElement,
-        buttonElement,
-      );
-      return this.instance;
-    }
-  }
-
-  private switchTheme(): void {
+  private switchTheme() {
     if (this.currentTheme === 'dark') {
       this.currentTheme = 'light';
       this.containerElement.classList.remove('todo--dark-theme');
