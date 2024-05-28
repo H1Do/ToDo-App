@@ -23,6 +23,7 @@ export class TodoController implements Controller {
     event: SubmitEvent,
   ) {
     event.preventDefault();
+    console.log(this.model);
     if (!taskInputElement.value) {
       return;
     }

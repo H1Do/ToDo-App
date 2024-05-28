@@ -52,11 +52,14 @@ export class TodoView {
       'DOMContentLoaded',
       this.controller.handleDOMContentLoaded.bind(this),
     );
-    window.addEventListener('beforeunload', this.controller.handleBeforeUnload);
+    window.addEventListener(
+      'beforeunload',
+      this.controller.handleBeforeUnload.bind(this.controller),
+    );
     this.taskInputForm.addEventListener(
       'submit',
       this.controller.handleTaskAddSubmit.bind(
-        null,
+        this.controller,
         this.taskInputElement,
         this.taskInputCheckboxElement,
       ),
